@@ -1,9 +1,45 @@
 // 1. Write your functions here
 
 
-// 2. Example Usage
+let numberInLine = 0;
+function takeANumber(array, name) {
+    let order = {
+        clientName: name,
+        clientNumber: ++numberInLine,
+    }
+    array.push(order);
+    console.log(`Welcome, ${order.clientName}. You are number ${order.clientNumber} in line.`)
+}
+function line(array) {
+    if (array.length == 0) {
+        console.log('The line is currently empty');
+        return 0;
+    }
+    let stringToAdd = "The line is currently: " + array.map(function (order) {
+        let string = `${order.clientNumber}. ${order.clientName} `
+        return string;
+    }).join(' ');
+    console.log(stringToAdd);
+}
+function nowServing(array) {
+    numberInLine = 0;
+    if (array.length == 0) {
+        console.log('There is nobody waiting to be served!');
+        return 0;
+    }
+    numberInLine = 0;
+    console.log(`Currently serving ${array[0].clientName}.`);
+    array.shift();
+    array = array.map(function (order) {
+        order.clientNumber = ++numberInLine;
+    })
+}
 
-// const katzDeli = []
+
+
+//2. Example Usage
+
+//const katzDeli = []
 
 // takeANumber(katzDeli, "Ada") //=> Welcome, Ada. You are number 1 in line.
 // takeANumber(katzDeli, "Grace") //=> Welcome, Grace. You are number 2 in line.
